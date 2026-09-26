@@ -7,8 +7,8 @@ export interface Agent {
   poste: string;
   libelleRegime: string;
   dureeReferenceSemaine: number;
-  salaireBaseMensuel: number;
-  inclureHeuresSupDansPaie: boolean;
+  salaireBaseMensuel: number | null;
+  inclureHeuresSupDansPaie: boolean | null;
   statut: StatutAgent;
 }
 

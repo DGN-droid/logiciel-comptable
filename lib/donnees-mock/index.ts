@@ -8,8 +8,8 @@ export interface AgentComplet extends AgentPourCalcul {
   matricule: string;
   poste: string;
   libelleRegime: string;
-  salaireBaseMensuel: number;
-  inclureHeuresSupDansPaie: boolean;
+  salaireBaseMensuel: number | null;
+  inclureHeuresSupDansPaie: boolean | null;
   statut: StatutAgent;
   /** Jours habituels de travail ; absent sur les anciennes données importées. */
   joursTravail?: JourSemaine[];

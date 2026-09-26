@@ -29,11 +29,16 @@ interface DonneesContextType {
     poste: string;
     libelleRegime: string;
     dureeReferenceSemaine: number;
-    salaireBaseMensuel: number;
-    inclureHeuresSupDansPaie: boolean;
+    salaireBaseMensuel: number | null;
+    inclureHeuresSupDansPaie: boolean | null;
     statut: StatutAgent;
     joursTravail: JourSemaine[];
   }) => void;
+  modifierConfigurationPaie: (
+    agentId: string,
+    salaireBaseMensuel: number | null,
+    inclureHeuresSupDansPaie: boolean | null,
+  ) => void;
   modifierPlanningAgent: (
     agentId: string,
     jour: keyof SemainePlanning,
@@ -98,8 +103,8 @@ export function DonneesProvider({ children }: { children: React.ReactNode }) {
     poste: string;
     libelleRegime: string;
     dureeReferenceSemaine: number;
-    salaireBaseMensuel: number;
-    inclureHeuresSupDansPaie: boolean;
+    salaireBaseMensuel: number | null;
+    inclureHeuresSupDansPaie: boolean | null;
     statut: StatutAgent;
     joursTravail: JourSemaine[];
   }) => {
@@ -134,6 +139,18 @@ export function DonneesProvider({ children }: { children: React.ReactNode }) {
       ...prev,
       [id]: planningVide,
     }));
+  };
+
+  const modifierConfigurationPaie = (
+    agentId: string,
+    salaireBaseMensuel: number | null,
+    inclureHeuresSupDansPaie: boolean | null,
+  ) => {
+    setAgents((prev) => prev.map((agent) => (
+      agent.id === agentId
+        ? { ...agent, salaireBaseMensuel, inclureHeuresSupDansPaie }
+        : agent
+    )));
   };
 
   const modifierPlanningAgent = (
@@ -230,6 +247,7 @@ export function DonneesProvider({ children }: { children: React.ReactNode }) {
         ajouterNotePeriode,
         supprimerNotePeriode,
         ajouterAgent,
+        modifierConfigurationPaie,
         modifierPlanningAgent,
         ajouterJourFerie,
         supprimerJourFerie,

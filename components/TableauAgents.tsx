@@ -13,7 +13,7 @@ export default function TableauAgents({
   onSelectAgent,
 }: TableauAgentsProps) {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div className="fipa-card-enter overflow-hidden rounded-[26px] border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
       <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
         <h2 className="font-semibold text-gray-900 text-base">Décompte hebdomadaire par agent</h2>
         <span className="text-xs text-gray-500 font-medium">4 agents affichés</span>
@@ -45,7 +45,7 @@ export default function TableauAgents({
                 <tr
                   key={agent.id}
                   onClick={() => onSelectAgent(agent)}
-                  className={`cursor-pointer transition-colors ${
+                  className={`fipa-list-row cursor-pointer transition-colors ${
                     isSelected
                       ? "bg-blue-50/60 border-l-4 border-[#264387]"
                       : "hover:bg-gray-50/80"

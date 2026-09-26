@@ -52,7 +52,7 @@ function DashboardFilter({ label, value, options, onChange }: DashboardFilterPro
       <button
         type="button"
         onClick={() => setIsOpen((open) => !open)}
-        className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 text-gray-700 hover:bg-white hover:border-[#264387]/40 transition-colors"
+        className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-[18px] border border-gray-200 text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:border-[#264387]/40 hover:shadow-md"
         aria-expanded={isOpen}
       >
         <span className="text-xs text-gray-500 font-medium">{label} :</span>
@@ -60,7 +60,7 @@ function DashboardFilter({ label, value, options, onChange }: DashboardFilterPro
         <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
       {isOpen && (
-        <div className="absolute left-0 top-full mt-2 z-20 min-w-full w-max max-w-[260px] rounded-lg border border-gray-200 bg-white p-1 shadow-lg">
+        <div className="absolute left-0 top-full mt-2 z-20 min-w-full w-max max-w-[260px] rounded-[18px] border border-gray-200 bg-white p-1.5 shadow-lg">
           {options.map((option) => (
             <button
               key={option}
@@ -69,7 +69,7 @@ function DashboardFilter({ label, value, options, onChange }: DashboardFilterPro
                 onChange(option);
                 setIsOpen(false);
               }}
-              className={`block w-full rounded-md px-3 py-2 text-left text-sm hover:bg-blue-50 ${option === value ? "bg-blue-50 font-semibold text-[#264387]" : "text-gray-700"}`}
+              className={`block w-full rounded-[12px] px-3 py-2 text-left text-sm transition-colors hover:bg-blue-50 ${option === value ? "bg-blue-50 font-semibold text-[#264387]" : "text-gray-700"}`}
             >
               {option}
             </button>
@@ -346,9 +346,9 @@ export default function Home() {
       </div>
 
       {/* 3. Filtres de la période */}
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-wrap items-center gap-3 text-sm">
+      <div className="bg-white p-4 rounded-[24px] shadow-sm border border-gray-100 flex flex-wrap items-center gap-3 text-sm">
         <DashboardFilter label="Entreprise" value={selectedEntreprise} options={entreprisesDisponibles} onChange={setSelectedEntreprise} />
-        <label className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 text-gray-700 hover:bg-white hover:border-[#264387]/40 transition-colors">
+        <label className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-[18px] border border-gray-200 text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:border-[#264387]/40 hover:shadow-md">
           <span className="text-xs text-gray-500 font-medium">Date :</span>
           <input type="date" value={dateReference} max={new Date().toISOString().slice(0, 10)} onChange={(event) => setDateReference(event.target.value)} className="font-semibold text-gray-900 bg-transparent focus:outline-none cursor-pointer" />
         </label>
@@ -366,7 +366,7 @@ export default function Home() {
       {/* 4 & 5. Section Principale : Tableau (70%) et Panneau latéral (30%) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Tableau (7 cols / ~70%) */}
-        <div className="lg:col-span-8 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="lg:col-span-8 overflow-hidden rounded-[26px] border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
           <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
             <h2 className="font-semibold text-gray-900 text-base">Décompte hebdomadaire par agent</h2>
             <span className="text-xs text-gray-500 font-medium">{agentRowsFiltres.length} agents affichés</span>
@@ -399,7 +399,7 @@ export default function Home() {
                     <tr
                       key={agent.id}
                       onClick={() => setSelectedAgentId(agent.id)}
-                      className={`cursor-pointer transition-colors ${
+                      className={`fipa-list-row cursor-pointer transition-colors ${
                         isSelected
                           ? "bg-blue-50/60 border-l-4 border-[#264387]"
                           : "hover:bg-gray-50/80"

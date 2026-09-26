@@ -10,7 +10,7 @@ interface TableauJoursFeriesProps {
 
 export default function TableauJoursFeries({ joursFeries, annee, onDelete }: TableauJoursFeriesProps) {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div className="fipa-card-enter overflow-hidden rounded-[26px] border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
       <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <CalendarDays className="w-5 h-5 text-[#264387]" />
@@ -33,7 +33,7 @@ export default function TableauJoursFeries({ joursFeries, annee, onDelete }: Tab
           </thead>
           <tbody className="divide-y divide-gray-100">
             {joursFeries.map((ferie) => (
-              <tr key={ferie.id} className="hover:bg-gray-50/80 transition-colors">
+              <tr key={ferie.id} className="fipa-list-row hover:bg-gray-50/80 transition-colors">
                 <td className="py-3.5 px-6 font-semibold text-gray-900">
                   {new Date(ferie.date).toLocaleDateString("fr-FR", {
                     weekday: "long",

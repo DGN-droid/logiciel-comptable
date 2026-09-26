@@ -20,14 +20,14 @@ export default function KpiCard({
   progressSegments = [],
 }: KpiCardProps) {
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex min-h-[132px] flex-col justify-between">
+    <div className="kpi-card-enter bg-white rounded-[30px] p-4 shadow-sm border border-gray-100 flex min-h-[132px] flex-col justify-between transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-lg hover:border-[#264387]/20">
       <div>
-        <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">{title}</p>
+        <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">{title}</p>
         <div className="mt-1.5 flex items-baseline justify-between gap-2">
-          <span className="text-xl font-bold leading-tight text-gray-900">{value}</span>
+          <span className="text-lg font-bold leading-tight text-gray-900">{value}</span>
           {badgeText && (
             <span
-              className={`text-xs font-medium px-2 py-0.5 rounded-full ${
+              className={`text-[11px] font-medium px-2 py-0.5 rounded-full ${
                 badgePositive
                   ? "bg-emerald-50 text-[#1c6943] border border-emerald-200"
                   : "bg-gray-100 text-gray-700"
@@ -57,7 +57,7 @@ export default function KpiCard({
             </div>
           </div>
         ) : (
-          <p className="text-xs text-gray-500">{subText}</p>
+          <p className="text-[11px] text-gray-500">{subText}</p>
         )}
       </div>
     </div>

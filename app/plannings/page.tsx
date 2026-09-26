@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useDonnees } from "@/contexts/DonneesContext";
 import { Creneau } from "@/lib/plannings-data";
+import { semaineMock } from "@/lib/donnees-mock";
 import { JourSemaine, SemainePlanning, CreneauTravail } from "@/lib/calcul-hs/types";
 import ModalEditCellule from "@/components/ModalEditCellule";
 import ModalImportPlanning from "@/components/ModalImportPlanning";
@@ -45,6 +46,7 @@ interface PlanningAgentDisplay {
 export default function PlanningsPage() {
   const { agents, plannings, modifierPlanningAgent, suivisJours, modifierSuiviJour } = useDonnees();
   const [selectedAgentFilter, setSelectedAgentFilter] = useState("Tous");
+  const [selectedWeek, setSelectedWeek] = useState(semaineMock.libelle);
   
   const [isImportModalOpen, setIsImportModalOpen] = useState(false);
   const [editCellData, setEditCellData] = useState<{
@@ -179,19 +181,22 @@ export default function PlanningsPage() {
       </div>
 
       {/* 2. Ligne de filtres */}
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-wrap items-center gap-3 text-sm">
-        <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 text-gray-700">
+      <div className="fipa-card-enter flex flex-wrap items-center gap-3 rounded-[24px] border border-gray-100 bg-white p-4 text-sm shadow-sm">
+        <label className="flex cursor-pointer items-center gap-2 rounded-[14px] border border-gray-200 bg-gray-50 px-3 py-2 text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#264387]/40 hover:bg-white hover:shadow-md">
           <span className="text-xs text-gray-500 font-medium">Semaine :</span>
-          <span className="font-semibold text-gray-900">S30 · 27 juil. – 2 août 2026</span>
-          <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
-        </div>
+          <select value={selectedWeek} onChange={(event) => setSelectedWeek(event.target.value)} className="cursor-pointer appearance-none bg-transparent font-semibold text-gray-900 focus:outline-none" aria-label="Sélectionner la semaine">
+            <option value={semaineMock.libelle}>S30 · 27 juil. – 2 août 2026</option>
+          </select>
+          <ChevronDown className="pointer-events-none h-3.5 w-3.5 shrink-0 text-gray-400" />
+        </label>
 
-        <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 text-gray-700">
+        <label className="flex cursor-pointer items-center gap-2 rounded-[14px] border border-gray-200 bg-gray-50 px-3 py-2 text-gray-700 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#264387]/40 hover:bg-white hover:shadow-md">
           <span className="text-xs text-gray-500 font-medium">Agent :</span>
           <select
             value={selectedAgentFilter}
             onChange={(e) => setSelectedAgentFilter(e.target.value)}
-            className="bg-transparent font-semibold text-gray-900 focus:outline-none cursor-pointer"
+            className="cursor-pointer appearance-none bg-transparent font-semibold text-gray-900 focus:outline-none"
+            aria-label="Filtrer par agent"
           >
             <option value="Tous">Tous les agents</option>
             {planningList.map((a) => (
@@ -200,7 +205,8 @@ export default function PlanningsPage() {
               </option>
             ))}
           </select>
-        </div>
+          <ChevronDown className="pointer-events-none h-3.5 w-3.5 shrink-0 text-gray-400" />
+        </label>
       </div>
 
       {/* 6. Bandeau d'info */}
@@ -211,8 +217,8 @@ export default function PlanningsPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="fipa-card-enter rounded-[30px] border border-amber-200 bg-amber-50 p-5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-lg">
           <div className="flex items-center gap-2 text-amber-700">
             <CircleDashed className="h-4 w-4" />
             <span className="text-xs font-semibold uppercase tracking-wide">À contrôler</span>
@@ -220,7 +226,7 @@ export default function PlanningsPage() {
           <p className="mt-2 text-2xl font-bold text-amber-800">{nombreJoursAControler}</p>
           <p className="text-xs text-amber-700">journées non renseignées</p>
         </div>
-        <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">
+        <div className="fipa-card-enter rounded-[30px] border border-blue-200 bg-blue-50 p-5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-lg">
           <div className="flex items-center gap-2 text-blue-700">
             <Clock3 className="h-4 w-4" />
             <span className="text-xs font-semibold uppercase tracking-wide">En cours</span>
@@ -228,7 +234,7 @@ export default function PlanningsPage() {
           <p className="mt-2 text-2xl font-bold text-blue-800">{nombreJoursEnCours}</p>
           <p className="text-xs text-blue-700">journées ouvertes</p>
         </div>
-        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+        <div className="fipa-card-enter rounded-[30px] border border-emerald-200 bg-emerald-50 p-5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-lg">
           <div className="flex items-center gap-2 text-emerald-700">
             <CheckCircle2 className="h-4 w-4" />
             <span className="text-xs font-semibold uppercase tracking-wide">Validées</span>
@@ -236,7 +242,7 @@ export default function PlanningsPage() {
           <p className="mt-2 text-2xl font-bold text-emerald-800">{nombreJoursValides}</p>
           <p className="text-xs text-emerald-700">journées contrôlées</p>
         </div>
-        <div className="rounded-xl border border-red-200 bg-red-50 p-4">
+        <div className="fipa-card-enter rounded-[30px] border border-red-200 bg-red-50 p-5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:shadow-lg">
           <div className="flex items-center gap-2 text-red-700">
             <UserX className="h-4 w-4" />
             <span className="text-xs font-semibold uppercase tracking-wide">Absences</span>
@@ -247,9 +253,9 @@ export default function PlanningsPage() {
       </div>
 
       {/* 3. Tableau "Planning de la semaine" */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="fipa-card-enter overflow-hidden rounded-[26px] border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
         <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-          <h2 className="font-semibold text-gray-900 text-base">Planning de la semaine (S30)</h2>
+          <h2 className="font-semibold text-gray-900 text-base">Planning de la semaine ({selectedWeek})</h2>
           <span className="text-xs text-gray-500 font-medium">
             Cliquez sur une cellule pour renseigner les heures réellement travaillées et le statut de la journée
           </span>
@@ -272,7 +278,7 @@ export default function PlanningsPage() {
                 const isEquiv = agent.regime.toLowerCase().includes("équivalence") || agent.regime.toLowerCase().includes("equiv");
 
                 return (
-                  <tr key={agent.id} className="hover:bg-gray-50/45 transition-colors">
+                  <tr key={agent.id} className="fipa-list-row hover:bg-gray-50/45 transition-colors">
                     <td className="py-4 px-5">
                       <div className="font-medium text-gray-900">{agent.nomComplet}</div>
                       <div className="text-xs text-gray-500">{agent.poste}</div>

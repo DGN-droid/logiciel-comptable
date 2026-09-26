@@ -10,7 +10,7 @@ export default function MiniCalendrier({ annee, moisIndex }: MiniCalendrierProps
   const cellules = getMoisGrid(annee, moisIndex);
 
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex flex-col justify-between">
+    <div className="fipa-card-enter flex flex-col justify-between rounded-[26px] border border-gray-100 bg-white p-4 shadow-sm transition-shadow duration-300 hover:shadow-md">
       <div className="text-center pb-2 border-b border-gray-100 mb-2">
         <h3 className="font-bold text-sm text-[#264387]">
           {moisNoms[moisIndex]} {annee}

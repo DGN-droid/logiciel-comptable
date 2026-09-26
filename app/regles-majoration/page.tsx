@@ -126,7 +126,7 @@ export default function ReglesMajorationPage() {
         </div>
       </div>
 
-      <form onSubmit={enregistrer} className="rounded-xl border border-gray-100 bg-white shadow-sm">
+      <form onSubmit={enregistrer} className="fipa-card-enter rounded-[26px] border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
         <div className="flex flex-col gap-3 border-b border-gray-100 px-6 py-5 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="font-semibold text-gray-900">Paramètres applicables aux heures supplémentaires</h2>
@@ -196,27 +196,27 @@ export default function ReglesMajorationPage() {
       </form>
 
       <section className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
+        <div className="fipa-card-enter rounded-[30px] border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
           <Clock3 className="mb-3 h-5 w-5 text-[#264387]" />
           <h2 className="font-bold text-gray-900">Jour et nuit</h2>
           <p className="mt-2 text-sm text-gray-600">Jour : 05h00 à 21h00.</p>
           <p className="text-sm text-gray-600">Nuit : 21h00 à 05h00.</p>
           <p className="mt-3 text-xs text-gray-500">Les créneaux qui traversent une limite sont automatiquement découpés.</p>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
+        <div className="fipa-card-enter rounded-[30px] border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
           <h2 className="font-bold text-gray-900">Jour ouvré</h2>
           <p className="mt-3 text-3xl font-bold text-[#264387]">{regles.seuilHeuresTranche1JourOuvre} h</p>
           <p className="mt-1 text-sm text-gray-600">Seuil de la première tranche de jour ouvré.</p>
           <p className="mt-3 text-xs text-gray-500">Ce compteur porte sur les heures supplémentaires de la catégorie, pas sur une position d’horloge fixe.</p>
         </div>
-        <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
+        <div className="fipa-card-enter rounded-[30px] border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
           <h2 className="font-bold text-gray-900">Dimanche / férié</h2>
           <p className="mt-3 text-sm text-gray-600">Un jour férié doit être déclaré explicitement dans le calendrier.</p>
           <p className="mt-3 text-xs text-gray-500">Sa déclaration change le taux des heures supplémentaires concernées ; elle ne crée pas automatiquement des heures supplémentaires.</p>
         </div>
       </section>
 
-      <section className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm">
+      <section className="overflow-hidden rounded-[26px] border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
         <div className="border-b border-gray-100 px-6 py-4">
           <h2 className="font-semibold text-gray-900">Grille des taux active</h2>
           <p className="mt-1 text-xs text-gray-500">Les taux ci-dessous s’appliquent uniquement aux heures supplémentaires.</p>
@@ -233,7 +233,7 @@ export default function ReglesMajorationPage() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {grille.map((regle) => (
-                <tr key={`${regle.categorie}-${regle.taux}`}>
+                <tr key={`${regle.categorie}-${regle.taux}`} className="fipa-list-row">
                   <td className="px-6 py-4 font-semibold text-gray-900">{regle.categorie}</td>
                   <td className="px-4 py-4 text-gray-600">{regle.plage}</td>
                   <td className="px-4 py-4 text-center">

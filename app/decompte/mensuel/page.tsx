@@ -63,25 +63,25 @@ export default function DecompteMensuelPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="fipa-card-enter rounded-[30px] border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-[#264387]/20 hover:shadow-lg">
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Heures réalisées</p>
           <p className="text-2xl font-bold text-gray-900 mt-2">{formatHeures(Number(totalRealise.toFixed(2)))}</p>
           <p className="text-xs text-gray-500 mt-2">Cumul des agents actifs</p>
         </div>
-        <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+        <div className="fipa-card-enter rounded-[30px] border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-[#264387]/20 hover:shadow-lg">
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Heures supplémentaires</p>
           <p className="text-2xl font-bold text-orange-600 mt-2">{formatHeures(Number(totalHS.toFixed(2)))}</p>
           <p className="text-xs text-gray-500 mt-2">Après application des seuils hebdomadaires</p>
         </div>
-        <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+        <div className="fipa-card-enter rounded-[30px] border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-[#264387]/20 hover:shadow-lg">
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Masse salariale simulée</p>
           <p className="text-2xl font-bold text-[#1c6943] mt-2">{formatFCFA(totalPaie)}</p>
           <p className="text-xs text-gray-500 mt-2">Salaire de base et HS incluses selon l’agent</p>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="fipa-card-enter overflow-hidden rounded-[26px] border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
         <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
           <h2 className="font-semibold text-gray-900">Synthèse mensuelle par agent</h2>
           <span className="text-xs text-gray-500">S30 · 27 juil. – 2 août 2026</span>
@@ -100,7 +100,7 @@ export default function DecompteMensuelPage() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {lignes.map(({ agent, resultatSemaine, paie }) => (
-                <tr key={agent.id} className="hover:bg-gray-50/80">
+                <tr key={agent.id} className="fipa-list-row hover:bg-gray-50/80">
                   <td className="py-4 px-6">
                     <div className="font-medium text-gray-900">{agent.nomComplet}</div>
                     <div className="text-xs text-gray-500">{agent.poste}</div>

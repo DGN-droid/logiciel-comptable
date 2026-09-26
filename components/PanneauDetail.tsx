@@ -14,7 +14,7 @@ export default function PanneauDetail({ agent }: PanneauDetailProps) {
   const tauxNuitFerie = agent.detailsTaux.tauxNuitFerie ?? 100;
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col space-y-6">
+    <div className="fipa-card-enter flex flex-col space-y-6 rounded-[26px] border border-gray-100 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
       <div className="border-b border-gray-100 pb-4">
         <div className="flex items-center space-x-2 text-[#264387] mb-1">
           <Calculator className="w-4 h-4" />

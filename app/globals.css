@@ -18,18 +18,186 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Contrôles de formulaire harmonisés avec les cartes et les filtres. */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  border-radius: 14px !important;
+  transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):hover,
+select:hover,
+textarea:hover {
+  box-shadow: 0 4px 12px rgba(38, 67, 135, 0.08);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus {
+  box-shadow: 0 0 0 3px rgba(38, 67, 135, 0.12);
+}
+
+button:not(:disabled) {
+  border-radius: 14px !important;
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+/* Les liens d'action ont le même comportement que les boutons. */
+a.inline-flex {
+  border-radius: 14px !important;
+  transition: transform 200ms ease, box-shadow 200ms ease, background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+a.inline-flex:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(38, 67, 135, 0.14);
+}
+
+.fipa-filter-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background-color: #f9fafb;
+  padding: 0.5rem 0.75rem;
+  color: #374151;
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background-color 200ms ease;
+}
+
+.fipa-filter-control:hover {
+  transform: translateY(-1px);
+  border-color: rgba(38, 67, 135, 0.4);
+  background-color: #ffffff;
+  box-shadow: 0 6px 14px rgba(38, 67, 135, 0.10);
+}
+
+html.dark .fipa-filter-control {
+  border-color: #344255;
+  background-color: #1a2535;
+  color: #cbd5e1;
+}
+
+html.dark .fipa-filter-control:hover {
+  border-color: #7896b8;
+  background-color: #243044;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+}
+
+/* Interaction commune des listes et des tableaux. */
+tbody > tr {
+  transition: background-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+
+tbody > tr:hover {
+  background-color: #f8fafc !important;
+  box-shadow: inset 3px 0 0 #9bb7d8;
+}
+
+.fipa-list-row {
+  transition: background-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+
+.fipa-list-row:hover > td {
+  background-color: #f8fafc !important;
+}
+
+.fipa-list-row:hover > td:first-child {
+  box-shadow: inset 3px 0 0 #9bb7d8;
+}
+
+article {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+article:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(38, 67, 135, 0.10);
+}
+
+@keyframes kpi-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fipa-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.fipa-card-enter {
+  animation: fipa-card-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.fipa-card-enter:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.fipa-card-enter:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.fipa-card-enter:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+.fipa-card-enter:nth-child(5) {
+  animation-delay: 400ms;
+}
+
+.kpi-card-enter {
+  animation: kpi-card-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.kpi-card-enter:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.kpi-card-enter:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+.kpi-card-enter:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kpi-card-enter,
+  .fipa-card-enter {
+    animation: none;
+  }
+}
+
 html.dark {
-  --background: #111827;
-  --foreground: #f3f4f6;
+  --background: #0b1220;
+  --foreground: #e5e7eb;
 }
 
 html.dark body {
-  background: #111827;
-  color: #f3f4f6;
+  background: #0b1220;
+  color: #e5e7eb;
 }
 
 html.dark .bg-white {
-  background-color: #1f2937;
+  background-color: #182334 !important;
 }
 
 html.dark .bg-gray-50,
@@ -68,4 +236,171 @@ html.dark textarea {
 html.dark input::placeholder,
 html.dark textarea::placeholder {
   color: #9ca3af;
+}
+
+/* Les variantes avec opacité (ex. bg-gray-50/70) doivent aussi suivre le thème sombre. */
+html.dark [class*="bg-gray-50"] {
+  background-color: #1a2535 !important;
+}
+
+html.dark [class*="bg-gray-100"] {
+  background-color: #243044 !important;
+}
+
+html.dark [class*="bg-gray-200"] {
+  background-color: #2b374a !important;
+}
+
+html.dark [class*="bg-gray-300"] {
+  background-color: #3a475b !important;
+}
+
+html.dark [class*="bg-blue-50"] {
+  background-color: #182b42 !important;
+}
+
+html.dark [class*="bg-emerald-50"] {
+  background-color: #16372f !important;
+}
+
+html.dark [class*="bg-emerald-100"] {
+  background-color: #1d4a3e !important;
+}
+
+html.dark [class*="bg-amber-50"] {
+  background-color: #3d3020 !important;
+}
+
+html.dark [class*="bg-amber-100"] {
+  background-color: #4a3820 !important;
+}
+
+html.dark [class*="bg-orange-100"] {
+  background-color: #432c22 !important;
+}
+
+html.dark [class*="bg-orange-50"] {
+  background-color: #432c22 !important;
+}
+
+html.dark [class*="bg-red-50"] {
+  background-color: #40282d !important;
+}
+
+html.dark [class*="border-gray-100"],
+html.dark [class*="border-gray-200"],
+html.dark [class*="border-gray-300"] {
+  border-color: #344255 !important;
+}
+
+html.dark .text-gray-400 {
+  color: #8290a3 !important;
+}
+
+html.dark .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-gray-600 {
+  color: #aab7c9 !important;
+}
+
+html.dark .text-gray-700 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-gray-800,
+html.dark .text-gray-900 {
+  color: #eef2f7 !important;
+}
+
+html.dark [class*="text-[#264387]"] {
+  color: #9bb7d8 !important;
+}
+
+html.dark [class*="text-[#1c6943]"] {
+  color: #8fc9ac !important;
+}
+
+html.dark .text-amber-700,
+html.dark .text-amber-800,
+html.dark .text-amber-900 {
+  color: #e0bd76 !important;
+}
+
+html.dark .text-blue-700,
+html.dark .text-blue-800,
+html.dark .text-blue-900 {
+  color: #9bb7d8 !important;
+}
+
+html.dark .text-emerald-700,
+html.dark .text-emerald-800 {
+  color: #8fc9ac !important;
+}
+
+html.dark .text-orange-600,
+html.dark .text-orange-700,
+html.dark .text-orange-900 {
+  color: #e2aa86 !important;
+}
+
+html.dark .text-red-500,
+html.dark .text-red-600,
+html.dark .text-red-700,
+html.dark .text-red-800 {
+  color: #e2a3ab !important;
+}
+
+html.dark [class*="divide-gray-100"] {
+  border-color: #374151 !important;
+}
+
+html.dark [class*="hover:bg-gray-50"]:hover {
+  background-color: #243044 !important;
+}
+
+html.dark [class*="hover:bg-gray-100"]:hover {
+  background-color: #2b374a !important;
+}
+
+html.dark [class*="hover:bg-blue-50"]:hover {
+  background-color: #203753 !important;
+}
+
+html.dark [class*="hover:bg-emerald-100"]:hover {
+  background-color: #255745 !important;
+}
+
+html.dark [class*="hover:bg-red-50"]:hover {
+  background-color: #5a3038 !important;
+}
+
+html.dark tbody > tr:hover {
+  background-color: #1f2c3e !important;
+  box-shadow: inset 3px 0 0 #7896b8;
+}
+
+html.dark .fipa-list-row:hover > td {
+  background-color: #1f2c3e !important;
+}
+
+html.dark .fipa-list-row:hover > td:first-child {
+  box-shadow: inset 3px 0 0 #7896b8;
+}
+
+html.dark article:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+}
+
+html.dark aside {
+  background: linear-gradient(to bottom, #185a3c, #154c36 52%, #123e2e) !important;
+}
+
+html.dark [class*="bg-[#1c6943]"] {
+  background-color: #216847 !important;
+}
+
+html.dark [class*="hover:bg-[#155435]"]:hover {
+  background-color: #1b523a !important;
 }

@@ -19,8 +19,8 @@ export default function AgentsPage() {
     poste: string;
     libelleRegime: string;
     dureeReferenceSemaine: number;
-    salaireBaseMensuel: number;
-    inclureHeuresSupDansPaie: boolean;
+    salaireBaseMensuel: number | null;
+    inclureHeuresSupDansPaie: boolean | null;
     statut: StatutAgent;
     joursTravail: JourSemaine[];
   }) => {
@@ -28,6 +28,8 @@ export default function AgentsPage() {
   };
 
   const regimesDisponibles = ["Tous", ...Array.from(new Set(agents.map((a) => a.libelleRegime)))];
+  const postesDisponibles = Array.from(new Set(agents.map((agent) => agent.poste.trim()).filter(Boolean))).sort();
+  const regimesPourAjout = Array.from(new Set(agents.map((agent) => agent.libelleRegime.trim()).filter(Boolean))).sort();
 
   const agentsFiltres = agents.filter((agent) => {
     const matchSearch =
@@ -64,7 +66,7 @@ export default function AgentsPage() {
       </div>
 
       {/* 3. Barre de recherche et filtres */}
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="fipa-card-enter flex flex-col items-center justify-between gap-4 rounded-[24px] border border-gray-100 bg-white p-4 shadow-sm md:flex-row">
         <div className="relative w-full md:w-96">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
           <input
@@ -77,7 +79,7 @@ export default function AgentsPage() {
         </div>
 
         <div className="flex items-center gap-3 w-full md:w-auto">
-          <div className="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200 text-gray-700 text-sm w-full md:w-auto">
+          <div className="fipa-filter-control text-sm w-full md:w-auto">
             <span className="text-xs text-gray-500 font-medium">Régime :</span>
             <select
               value={selectedRegime}
@@ -95,7 +97,7 @@ export default function AgentsPage() {
       </div>
 
       {/* 2. Tableau des agents */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+      <div className="fipa-card-enter overflow-hidden rounded-[26px] border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
         <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
           <h2 className="font-semibold text-gray-900 text-base">Liste des agents</h2>
           <span className="text-xs text-gray-500 font-medium">
@@ -111,6 +113,7 @@ export default function AgentsPage() {
                 <th className="py-3 px-4">Poste</th>
                 <th className="py-3 px-4">Régime</th>
                 <th className="py-3 px-4 text-center">Durée réf.</th>
+                <th className="py-3 px-4 text-center">Paie</th>
                 <th className="py-3 px-4 text-center">Statut</th>
                 <th className="py-3 px-6 text-right">Actions</th>
               </tr>
@@ -123,7 +126,7 @@ export default function AgentsPage() {
                 return (
                   <tr
                     key={agent.id}
-                    className="hover:bg-gray-50/80 transition-colors cursor-pointer"
+                    className="fipa-list-row hover:bg-gray-50/80 transition-colors cursor-pointer"
                   >
                     <td className="py-3.5 px-6 font-medium text-gray-900">
                       {agent.nomComplet}
@@ -145,6 +148,17 @@ export default function AgentsPage() {
                     </td>
                     <td className="py-3.5 px-4 text-center font-bold text-gray-900">
                       {agent.dureeReferenceSemaine}h
+                    </td>
+                    <td className="py-3.5 px-4 text-center">
+                      {agent.salaireBaseMensuel === null || agent.inclureHeuresSupDansPaie === null ? (
+                        <span className="inline-flex rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-700 border border-amber-200">
+                          Paie non définie
+                        </span>
+                      ) : (
+                        <span className="text-xs font-semibold text-gray-700">
+                          {agent.salaireBaseMensuel.toLocaleString("fr-FR")} FCFA
+                        </span>
+                      )}
                     </td>
                     <td className="py-3.5 px-4 text-center">
                       <span
@@ -187,6 +201,8 @@ export default function AgentsPage() {
       <ModalAjoutAgent
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        postesDisponibles={postesDisponibles}
+        regimesDisponibles={regimesPourAjout}
         onSave={(nouveau) => {
           handleSaveAgent(nouveau);
         }}

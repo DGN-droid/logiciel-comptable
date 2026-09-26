@@ -4,17 +4,17 @@ import { ResultatPaie, DetailMontantTaux } from "./types";
 
 export interface AgentPourPaie {
   id: string;
-  salaireBaseMensuel: number;
-  inclureHeuresSupDansPaie: boolean;
+  salaireBaseMensuel: number | null;
+  inclureHeuresSupDansPaie: boolean | null;
 }
 
 export function calculerPaieAgent(
   agent: AgentPourPaie,
   resultatSemaine: ResultatSemaine
 ): ResultatPaie {
-  const salaireBaseMensuel = agent.salaireBaseMensuel;
+  const salaireBaseMensuel = agent.salaireBaseMensuel ?? 0;
   const tauxHoraire = calculerTauxHoraire(salaireBaseMensuel);
-  const inclureHeuresSup = agent.inclureHeuresSupDansPaie;
+  const inclureHeuresSup = agent.inclureHeuresSupDansPaie === true;
 
   let montantHeuresSup = 0;
   const detailMontantParTaux: DetailMontantTaux[] = [];

@@ -99,7 +99,7 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
           <button
             type="button"
             onClick={onToggle}
-            className="rounded-xl p-2 text-emerald-100 transition-all duration-200 hover:bg-white/15 hover:text-white"
+            className="rounded-2xl p-2 text-emerald-100 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/15 hover:text-white hover:shadow-sm"
             title="Déployer la sidebar"
           >
             <Menu className="h-5 w-5" />
@@ -128,7 +128,7 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
           <button
             type="button"
             onClick={onToggle}
-            className="shrink-0 rounded-xl p-2 text-emerald-100 transition-all duration-200 hover:bg-white/15 hover:text-white"
+            className="shrink-0 rounded-2xl p-2 text-emerald-100 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/15 hover:text-white hover:shadow-sm"
             title="Replier la sidebar"
           >
             <ChevronLeft className="h-5 w-5" />
@@ -136,7 +136,7 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
         </div>
       )}
 
-      <div className="relative z-10 flex-1 space-y-5 overflow-y-auto px-3 py-4 custom-scrollbar">
+      <div className={`relative z-10 flex-1 space-y-5 overflow-y-auto py-4 custom-scrollbar ${isCollapsed ? "px-2" : "px-3"}`}>
         {navSections.map((section) => (
           <div key={section.title} className="space-y-2">
             {!isCollapsed && (
@@ -159,11 +159,11 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
                     href={item.href}
                     title={isCollapsed ? item.label : undefined}
                     aria-current={isActive ? "page" : undefined}
-                    className={`group relative flex min-h-10 items-center gap-3 rounded-xl px-3 py-2 text-[13px] font-medium transition-all duration-200 ${
+                    className={`group relative flex min-h-10 items-center gap-3 rounded-2xl px-3 py-2 text-[13px] font-medium transition-all duration-200 ${
                       isActive
-                        ? "bg-white/[0.18] font-semibold text-white shadow-[0_8px_18px_rgba(0,0,0,0.10)] before:absolute before:left-0 before:top-1/2 before:h-7 before:w-1 before:-translate-y-1/2 before:rounded-r-full before:bg-emerald-200"
-                        : "text-emerald-50/85 hover:translate-x-0.5 hover:bg-white/[0.10] hover:text-white"
-                    } ${isCollapsed ? "justify-center px-2" : ""}`}
+                        ? "bg-white/[0.18] font-semibold text-white shadow-[0_8px_18px_rgba(0,0,0,0.10)]"
+                        : "text-emerald-50/85 hover:-translate-y-0.5 hover:translate-x-0.5 hover:bg-white/[0.10] hover:text-white hover:shadow-sm"
+                    } ${isCollapsed ? "w-11 justify-center px-0" : ""}`}
                   >
                     <Icon
                       strokeWidth={isActive ? 2.3 : 1.9}
@@ -182,7 +182,7 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
 
       <div className={`relative z-10 px-3 pb-3 ${isCollapsed ? "flex justify-center" : ""}`}>
         <div
-          className={`rounded-xl border border-white/10 bg-black/10 p-1 shadow-inner ${
+          className={`rounded-2xl border border-white/10 bg-black/10 p-1 shadow-inner ${
             isCollapsed ? "flex flex-col gap-1" : "grid grid-cols-3 gap-1"
           }`}
           aria-label="Choisir le thème"
@@ -195,7 +195,7 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
               title={isCollapsed ? label : undefined}
               aria-label={`Thème ${label}`}
               aria-pressed={themeMode === mode}
-              className={`flex items-center justify-center gap-1.5 rounded-lg px-2 py-2 text-xs font-medium transition-colors ${
+              className={`flex items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm ${
                 themeMode === mode
                   ? "bg-white text-[#155435] shadow-md"
                   : "text-emerald-100 hover:bg-white/15 hover:text-white"
@@ -218,7 +218,7 @@ export default function Sidebar({ isCollapsed, onToggle }: SidebarProps) {
             MD
           </div>
         ) : (
-          <div className="flex items-center gap-3 rounded-xl px-2 py-2 transition-colors hover:bg-white/10">
+          <div className="flex items-center gap-3 rounded-2xl px-2 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 hover:shadow-sm">
             <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-sm font-bold text-white shadow-inner ring-1 ring-white/20">
               <span className="absolute right-0 top-0 h-2.5 w-2.5 rounded-full bg-emerald-300 ring-2 ring-[#145b39]" />
               MD

@@ -50,7 +50,7 @@ export default function DecompteHebdomadairePage() {
         </div>
         <Link
           href="/plannings"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white bg-[#1c6943] hover:bg-[#155435]"
+          className="inline-flex items-center gap-2 rounded-[14px] bg-[#1c6943] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#155435] hover:shadow-md"
         >
           <CalendarRange className="w-4 h-4" />
           Vérifier les plannings
@@ -65,18 +65,18 @@ export default function DecompteHebdomadairePage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="fipa-card-enter rounded-[30px] border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-[#264387]/20 hover:shadow-lg">
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Heures réalisées</p>
           <p className="text-2xl font-bold text-gray-900 mt-2">{formatHeures(Number(totalRealise.toFixed(2)))}</p>
           <p className="text-xs text-gray-500 mt-2">Total de la semaine pour les agents actifs</p>
         </div>
-        <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+        <div className="fipa-card-enter rounded-[30px] border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-[#264387]/20 hover:shadow-lg">
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Heures supplémentaires</p>
           <p className="text-2xl font-bold text-orange-600 mt-2">{formatHeures(Number(totalHS.toFixed(2)))}</p>
           <p className="text-xs text-gray-500 mt-2">Après franchissement du seuil individuel</p>
         </div>
-        <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100">
+        <div className="fipa-card-enter rounded-[30px] border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] hover:border-[#264387]/20 hover:shadow-lg">
           <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Agents concernés</p>
           <p className="text-2xl font-bold text-[#1c6943] mt-2">{agentsEnHS} / {lignes.length}</p>
           <p className="text-xs text-gray-500 mt-2">Agents actifs avec au moins une HS</p>
@@ -84,7 +84,7 @@ export default function DecompteHebdomadairePage() {
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 items-start">
-        <div className="xl:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="fipa-card-enter xl:col-span-2 overflow-hidden rounded-[26px] border border-gray-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-md">
           <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
             <h2 className="font-semibold text-gray-900">Résultat par agent</h2>
             <span className="text-xs text-gray-500">{lignes.length} agents actifs</span>
@@ -105,7 +105,7 @@ export default function DecompteHebdomadairePage() {
                   <tr
                     key={agent.id}
                     onClick={() => setSelectedAgentId(agent.id)}
-                    className={`cursor-pointer transition-colors ${selectedId === agent.id ? "bg-blue-50/60" : "hover:bg-gray-50/80"}`}
+                    className={`fipa-list-row cursor-pointer transition-colors ${selectedId === agent.id ? "bg-blue-50/60" : "hover:bg-gray-50/80"}`}
                   >
                     <td className="py-3.5 px-5">
                       <div className="font-medium text-gray-900">{agent.nomComplet}</div>
@@ -131,7 +131,7 @@ export default function DecompteHebdomadairePage() {
         </div>
 
         {selected && (
-          <aside className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 space-y-5">
+          <aside className="fipa-card-enter space-y-5 rounded-[26px] border border-gray-100 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
             <div className="border-b border-gray-100 pb-4">
               <div className="flex items-center gap-2 text-[#264387] mb-1">
                 <Clock3 className="w-4 h-4" />
